@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using MVCMusicStoreApplication2.Models;
 
 namespace MVCMusicStoreApplication.Models
 {
-	public class SampleData  //: DropCreateDatabaseAlways<MVCMusicStoreDB>
+	public class SampleData  : DropCreateDatabaseAlways<MVCMusicStoreDB>
     {
         protected override void Seed(MVCMusicStoreDB context)
         {

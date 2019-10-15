@@ -6,110 +6,112 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVCMusicStoreApplication.Models;
+using MVCMusicStoreApplication2.Models;
 
-namespace EnrollmentApplication.Models
+namespace MVCMusicStoreApplication2.Controllers
 {
-    public class CourseController : Controller
+    public class ArtistController : Controller
     {
-        private EnrollmentDB db = new EnrollmentDB();
+        private MVCMusicStoreDB db = new MVCMusicStoreDB();
 
-        // GET: Course
+        // GET: Artist
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(db.Artists.ToList());
         }
 
-        // GET: Course/Details/5
+        // GET: Artist/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Artist artist = db.Artists.Find(id);
+            if (artist == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(artist);
         }
 
-        // GET: Course/Create
+        // GET: Artist/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Course/Create
+        // POST: Artist/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseId,CourseTitle,CourseDesc,CourseCredits")] Course course)
+        public ActionResult Create([Bind(Include = "ArtistId,Name")] Artist artist)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Artists.Add(artist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(artist);
         }
 
-        // GET: Course/Edit/5
+        // GET: Artist/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Artist artist = db.Artists.Find(id);
+            if (artist == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(artist);
         }
 
-        // POST: Course/Edit/5
+        // POST: Artist/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseId,CourseTitle,CourseDesc,CourseCredits")] Course course)
+        public ActionResult Edit([Bind(Include = "ArtistId,Name")] Artist artist)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(artist);
         }
 
-        // GET: Course/Delete/5
+        // GET: Artist/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Artist artist = db.Artists.Find(id);
+            if (artist == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(artist);
         }
 
-        // POST: Course/Delete/5
+        // POST: Artist/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Artist artist = db.Artists.Find(id);
+            db.Artists.Remove(artist);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
