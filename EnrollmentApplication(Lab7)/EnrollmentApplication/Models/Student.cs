@@ -46,7 +46,7 @@ namespace EnrollmentApplication.Models
             }
 
             var pState = new[] { "State" };
-  
+            int statelength = State.Length;
 
             if (State.Length != 2 )
             {
