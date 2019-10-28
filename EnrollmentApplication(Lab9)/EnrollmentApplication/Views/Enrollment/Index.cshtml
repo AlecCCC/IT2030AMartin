@@ -1,0 +1,115 @@
+﻿@model IEnumerable<EnrollmentApplication.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@*<div id="MonthStudent">
+    @Ajax.ActionLink("Student of the Month", "MonthStudent", null,
+
+
+   new AjaxOptions
+   {
+       UpdateTargetId = "MonthStudent",
+       InsertionMode = InsertionMode.Replace,
+       HttpMethod = "GET"
+
+   },
+
+    new { @class = "btn btn-primary" })
+
+
+</div>*@
+
+<div class="panel panel-default">
+    <div class="panel-heading">Student Search</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("StudentSearch", "Enrollment", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults"
+
+        }))
+        {
+            <input type="text" name="q" />
+            <input type="submit" value="search" />
+
+        }
+        <div id="searchresults"></div>
+    </div>
+
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Course Search</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("CourseSearch", "Enrollment", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults2"
+
+        }))
+        {
+            <input type="text" name="q" />
+            <input type="submit" value="search" />
+
+        }
+        <div id="searchresults2"></div>
+    </div>
+
+
+</div>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CourseTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EnrollmentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/Apps/StudentScripts.js"></script>
+}
