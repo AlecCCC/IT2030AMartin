@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
-namespace MVCMusicStoreApplication.Models
+namespace MVCMusicStoreApplication2.Models
 {
-    public class Album
+    public class Album :  DropCreateDatabaseAlways<MVCMusicStoreDB>
     {
+
         public virtual int AlbumId { get; set; }
         public virtual int GenreId { get; set; }
         public virtual int ArtistId { get; set; }

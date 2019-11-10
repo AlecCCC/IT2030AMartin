@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MVCMusicStoreApplication2.Models.Genre>
+@{
+    ViewBag.Title = "Browse";
+}
+
+<h2>Browse</h2>
+
+@using (Ajax.BeginForm("_GenreSearch", "Store", new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "GET",
+    OnFailure = "searchFailed",
+    LoadingElementId = "ajax-loader",
+    UpdateTargetId = "searchresults"
+
+}))
+{
+    <input type="text" name="q" />
+    <input type="submit" value="search" />
+
+}
+
+
+
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/Apps/StudentScripts.js"></script>
+}

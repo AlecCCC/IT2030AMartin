@@ -8,17 +8,17 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9F0E6F62-CCF2-4C3B-BC65-61575BA3CBDF}</ProjectGuid>
+    <ProjectGuid>{009A30D3-0F7C-4CAF-A33C-CD8D1873F614}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVCMusicStoreApplication</RootNamespace>
-    <AssemblyName>MVCMusicStoreApplication</AssemblyName>
+    <RootNamespace>MVCMusicStoreApplication2</RootNamespace>
+    <AssemblyName>MVCMusicStoreApplication2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44328</IISExpressSSLPort>
+    <IISExpressSSLPort>44375</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -126,41 +126,39 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArtistController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910142345126_InitialCreate.cs" />
+    <Compile Include="Migrations\201910142345126_InitialCreate.Designer.cs">
+      <DependentUpon>201910142345126_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Artist.cs" />
-    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MVCMusicStoreDB.cs" />
     <Compile Include="Models\SampleData.cs" />
-    <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="Models\ShoppingCartRemoveViewModel.cs" />
-    <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\home-showcase.png" />
-    <Content Include="Content\logo.png" />
-    <Content Include="Content\placeholder.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\App\Error.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\Error.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -173,7 +171,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\MusicScript.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -193,11 +190,18 @@
     <Content Include="Views\StoreManager\Details.cshtml" />
     <Content Include="Views\StoreManager\Edit.cshtml" />
     <Content Include="Views\StoreManager\Index.cshtml" />
+    <Content Include="Views\Artist\Create.cshtml" />
+    <Content Include="Views\Artist\Delete.cshtml" />
+    <Content Include="Views\Artist\Details.cshtml" />
+    <Content Include="Views\Artist\Edit.cshtml" />
+    <Content Include="Views\Artist\Index.cshtml" />
+    <Content Include="Views\Genre\Create.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
+    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
     <Content Include="Views\Store\Browse.cshtml" />
-    <Content Include="Views\Store\Index.cshtml" />
-    <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Store\_GenreSearch.cshtml" />
-    <Content Include="Views\ShoppingCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -215,6 +219,11 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201910142345126_InitialCreate.resx">
+      <DependentUpon>201910142345126_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -231,9 +240,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50913</DevelopmentServerPort>
+          <DevelopmentServerPort>63805</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44328/</IISUrl>
+          <IISUrl>https://localhost:44375/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
