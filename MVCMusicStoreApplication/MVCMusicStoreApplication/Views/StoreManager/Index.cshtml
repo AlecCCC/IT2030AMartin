@@ -6,6 +6,24 @@
 
 <h2>Index</h2>
 
+
+<div id="dailydeal">
+    @Ajax.ActionLink("Today's Deal", "StoreManager", null,
+
+
+   new AjaxOptions
+   {
+       UpdateTargetId = "dailydeal",
+       InsertionMode = InsertionMode.Replace,
+       HttpMethod = "GET"
+
+   },
+
+    new { @class = "btn btn-primary" })
+
+
+</div>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
