@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Home</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Event Search</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("EventSearch", "Events", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults"
+
+        }))
+        {
+            <input type="text" name="q" /> <input type="submit" value="search" />
+            
+
+        }
+
+        @using (Ajax.BeginForm("LocationSearch", "Events", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults"
+
+        }))
+        {
+
+            <input type="text" name="e" /> <input type="submit" value="search" />
+
+        }
+
+        <div id="searchresults"></div>
+    </div>
+
+
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/App/EventSearch.js"></script>
+}
