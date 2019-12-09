@@ -15,12 +15,6 @@ namespace EventProject.Controllers
         private EventProjectDB db = new EventProjectDB();
 
 
-
-
-
-
-
-
         public ActionResult Register(int? id)
         {
 
