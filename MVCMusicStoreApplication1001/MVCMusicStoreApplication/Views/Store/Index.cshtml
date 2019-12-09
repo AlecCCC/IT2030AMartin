@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="MonthStudent">
+    @Ajax.ActionLink("Today's Deal", "DailyDeal", null,
+
+
+   new AjaxOptions
+   {
+       UpdateTargetId = "MonthStudent",
+       InsertionMode = InsertionMode.Replace,
+       HttpMethod = "GET"
+
+   },
+
+    new { @class = "btn btn-primary" })
+
+
+</div>

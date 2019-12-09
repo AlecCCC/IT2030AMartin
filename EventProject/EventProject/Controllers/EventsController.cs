@@ -14,8 +14,33 @@ namespace EventProject.Controllers
     {
         private EventProjectDB db = new EventProjectDB();
 
-        //@item.EventTitle
-        //<li>@Html.ActionLink(item.EventTitle,item.StartDate, item.Location,"Details", new { id = item.EventTitle})</li>  a.Location.Contains(searchString)
+
+
+
+
+
+
+
+        public ActionResult Register(int? id)
+        {
+
+            var events = db.Events;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Events.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+           
+            return View(@event);
+
+        }
+
+
+        
 
         public ActionResult EventSearch(string q)
         {

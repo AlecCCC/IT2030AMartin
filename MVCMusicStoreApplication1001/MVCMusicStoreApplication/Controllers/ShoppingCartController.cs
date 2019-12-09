@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EventProject.Models;
+using MVCMusicStoreApplication.Models;
 
-namespace EventProject.Controllers
+namespace MVCMusicStoreApplication.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        EventProjectDB db = new EventProjectDB();
+        MVCMusicStoreDB db = new MVCMusicStoreDB();
         // GET: ShoppingCart
         public ActionResult Index()
         {
@@ -18,7 +18,7 @@ namespace EventProject.Controllers
             ShoppingCartViewModel vn = new ShoppingCartViewModel()
             {
                 CartItems = cart.GetCartItems(),
-
+                CartTotal = cart.GetCartTotal()
             };
 
             return View(vn);
@@ -38,19 +38,20 @@ namespace EventProject.Controllers
         {
             ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
 
-            Event evente = db.Carts.SingleOrDefault(c => c.RecordId == id).EventSelected;
+            Album album = db.Carts.SingleOrDefault(c => c.RecordId == id).AlbumSelected;
             int newItemCount = cart.RemoveFromCart(id);
-
+            cart.RemoveFromCart(id);
 
             ShoppingCartRemoveViewModel vm = new ShoppingCartRemoveViewModel()
             {
                 DeleteId = id,
+                CartTotal = cart.GetCartTotal(),
                 ItemCount = newItemCount,
-                Message = evente.EventTitle + " was removed from the cart."
+                Message = "Your Album was removed from the cart."
             };
 
             return Json(vm);
-
+            
         }
 
     }

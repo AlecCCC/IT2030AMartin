@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<EventProject.Models.Event>
 
     <div id="searchresults">
-        <table class="table">
+
 
             @foreach (var item in Model)
             {
 
             <ul>
-                @Html.ActionLink(item.EventTitle, "Details", new { id = item.EventId })
+                @Html.ActionLink(item.EventTitle, "Register", new { id = item.EventId })
             </ul>
 
             }
 
-        </table>
+
  
     </div>
 

@@ -1,0 +1,23 @@
+﻿@model EventProject.Models.Event
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+<div>
+    <p>
+        <strong>Sale Ends on</strong> @Html.DisplayFor(model => model.StartDate)
+    </p>
+
+    <header> <strong>Event Title:</strong>  @Html.DisplayFor(model => model.EventTitle)</header>
+
+
+    <strong>Ticket Amount</strong>
+    <p>@Html.DropDownListFor(model => model.Tickets, new SelectList(Enumerable.Range(0, 11)))  </p>
+</div>
+
+
+@Html.ActionLink("Add to cart", "AddtoCart", "ShoppingCart",
+       new { id = Model.EventId },
+       new { @class = "btn btn-primary" })

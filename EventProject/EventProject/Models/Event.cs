@@ -41,11 +41,16 @@ namespace EventProject.Models
         public int AvailableTix { get; set; }
         public EventType EventType { get; set; }
 
+        public  int Tickets { get; set; }
+
 
 
         [Required]
+        [Display(Name = "Organizer's Name")]
         public string OrgName { get; set; }
+        [Display(Name = "Organizer's Email")]
         public string OrgEmail { get; set; }
+        [Display(Name = "Organizer's Phone Number")]
         public string OrgPhone { get; set; }
 
     }
