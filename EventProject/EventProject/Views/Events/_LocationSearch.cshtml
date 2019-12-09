@@ -1,51 +1,15 @@
 ﻿@model IEnumerable<EventProject.Models.Event>
 <div id="searchresults">
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EventTitle)
-            </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-
-            <th></th>
-        </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventTitle)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-
-                <td>
-
-                    @Html.ActionLink("Details", "Details", new { id = item.EventId })
-
-                </td>
-            </tr>
+            <ul>
+            @Html.ActionLink(item.EventTitle, "Details", new { id = item.EventId })
+            </ul>
         }
 
     </table>
-    <ul>
-        @foreach (var item in Model)
-        {
-
-        }
-    </ul>
 
 </div>

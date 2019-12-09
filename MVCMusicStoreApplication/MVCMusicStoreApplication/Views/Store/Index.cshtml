@@ -1,23 +1,16 @@
-﻿
+﻿@model IEnumerable<MVCMusicStoreApplication.Models.Album>
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-<div id="MonthStudent">
-    @Ajax.ActionLink("Today's Deal", "DailyDeal", null,
+@foreach (var item in Model)
+{
+
+    <ul>
+        <li>@Html.ActionLink(item.Title, "Details", new { id = item.AlbumId }) </li>
+    </ul>
 
 
-   new AjaxOptions
-   {
-       UpdateTargetId = "MonthStudent",
-       InsertionMode = InsertionMode.Replace,
-       HttpMethod = "GET"
-
-   },
-
-    new { @class = "btn btn-primary" })
-
-
-</div>
+} 

@@ -1,58 +1,36 @@
-﻿using MVCMusicStoreApplication.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVCMusicStoreApplication.Models;
 
 namespace MVCMusicStoreApplication.Controllers
 {
     public class StoreController : Controller
     {
-        private MVCMusicStoreDB db = new MVCMusicStoreDB();
-
-        public ActionResult DailyDeal()
-        {
-            var album = GetDailyDeal();
-            return PartialView("_DailyDeal", album);
-        }
-
-        private object GetDailyDeal()
-        {
-            var album = db.Albums
-            .OrderBy(a => System.Guid.NewGuid())
-             .First();
-            return album;
-        }
-
-
-
-        public ActionResult GenreSearch(string q)
-        {
-            var Name = GetGenre(q);
-            return PartialView("_GenreSearch", Name);
-        }
-
-        private List<Genre> GetGenre(string searchString)
-        {
-            return db.Genres
-            .Where(a => a.Name.Contains(searchString))
-            .ToList();
-        }
-
-
+        private MVCMusicStoreApplicationDB db = new MVCMusicStoreApplicationDB();
         // GET: Store
-        public ActionResult Index()
-        {
-            return View();
-        }
+        [HttpGet]
         public ActionResult Browse()
         {
-            return View();
+            return View(db.Genres.ToList());
         }
-        public ActionResult Details()
+
+        [HttpGet]
+        public ActionResult Index(int id)
         {
-            return View();
+
+            //var album = db.Albums.Find(id);
+            return View(db.Albums.ToList());
         }
+
+        public ActionResult Details(int id)
+        {
+            var album = db.Albums.Find(id);
+            return View(album);
+
+        }
+
     }
 }

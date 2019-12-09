@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using MVCMusicStoreApplication.Models;
 
 namespace MVCMusicStoreApplication.Models
 {
-	public class SampleData : DropCreateDatabaseAlways<MVCMusicStoreDB>
+	public class SampleData  : DropCreateDatabaseAlways<MVCMusicStoreApplicationDB>
     {
-        protected override void Seed(MVCMusicStoreDB context)
+        protected override void Seed(MVCMusicStoreApplicationDB context)
         {
             var genres = new List<Genre>
             {

@@ -1,37 +1,18 @@
 ﻿@model IEnumerable<MVCMusicStoreApplication.Models.Genre>
+
 @{
     ViewBag.Title = "Browse";
 }
 
 <h2>Browse</h2>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Student Search</div>
-    <div class="panel-body">
-        @using (Ajax.BeginForm("GenreSearch", "Store", new AjaxOptions
-        {
-            InsertionMode = InsertionMode.Replace,
-            HttpMethod = "GET",
-            OnFailure = "searchFailed",
-            LoadingElementId = "ajax-loader",
-            UpdateTargetId = "searchresults"
 
-        }))
-        {
-            <input type="text" name="q" />
-            <input type="submit" value="search" />
+@foreach(var item in Model)
+{
 
-        }
-        <div id="searchresults"></div>
-    </div>
+<ul>
+<li>@Html.ActionLink(item.Name, "Index", new { id = item.GenreId }) </li>
+</ul>
 
 
-</div>
-
-
-
-    @section Scripts{
-
-        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-        <script src="~/Scripts/Error.js"></script>
-    }
+} 

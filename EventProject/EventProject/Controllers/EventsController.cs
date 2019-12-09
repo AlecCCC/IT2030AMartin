@@ -26,7 +26,7 @@ namespace EventProject.Controllers
         private List<Event> GetEvents(string searchString)
         {
             return db.Events
-            .Where(a => a.EventTitle.Contains(searchString))
+            .Where(a => a.EventTitle.Contains(searchString) || a.EventType.Type.Contains(searchString))
             .ToList();
         }
 
@@ -43,21 +43,6 @@ namespace EventProject.Controllers
             .Where(a => a.Location.Contains(searchString))
             .ToList();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
