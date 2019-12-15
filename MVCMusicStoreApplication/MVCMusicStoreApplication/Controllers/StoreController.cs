@@ -21,8 +21,8 @@ namespace MVCMusicStoreApplication.Controllers
         public ActionResult Index(int id)
         {
 
-            //var album = db.Albums.Find(id);
-            return View(db.Albums.ToList());
+            return View(db.Albums.Where(x => x.GenreId == id).ToList());
+
         }
 
         public ActionResult Details(int id)
